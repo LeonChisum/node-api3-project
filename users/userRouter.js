@@ -18,7 +18,10 @@ router.post("/", validateUser, (req, res) => {
 router.post("/:id/posts", validateUserId, validatePost, (req, res) => {
   // do your magic!
   userDb
-    .insert(req.body)
+    .insert({
+      ...req.body,
+      user_id: req.params.id
+    })
     .then(user => res.status(201).json(user))
     .catch(err => {
       console.log(err);
