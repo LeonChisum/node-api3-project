@@ -61,10 +61,11 @@ router.get("/:id/posts", validateUserId, (req, res) => {
 
 router.delete("/:id", validateUserId, (req, res) => {
   // do your magic!
-  userDb.remove(req.params.id)
+  userDb
+    .remove(req.params.id)
     .then(num => {
-      res.status(200)
-      console.log(`You've deleted ${num} user(s)`)
+      res.status(200);
+      console.log(`You've deleted ${num} user(s)`);
     })
     .catch(err => {
       console.log(err);
@@ -74,12 +75,13 @@ router.delete("/:id", validateUserId, (req, res) => {
 
 router.put("/:id", validateUser, validateUserId, (req, res) => {
   // do your magic!
-  userDb.update(req.params.id, req.body)
-      .then(user => res.status(200).json(user))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({ message: "Could not update user" });
-      });
+  userDb
+    .update(req.params.id, req.body)
+    .then(user => res.status(200).json(user))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: "Could not update user" });
+    });
 });
 
 //custom middleware
