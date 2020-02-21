@@ -10,6 +10,9 @@ const port = 4000
 
 server.use(logger())
 
+server.use("/", (req, res) => {
+    res.json({ message: "Welcome to Leon's Api" })
+})
 server.use("/api/users", userRouter)
 server.use("/api/posts", postRouter)
 
