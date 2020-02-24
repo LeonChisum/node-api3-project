@@ -7,7 +7,7 @@ const userDb = require("./userDb");
 router.post("/", validateUser, (req, res) => {
   // do your magic!
   userDb
-    .insert(body)
+    .insert(req.body)
     .then(user => res.status(201).json(user))
     .catch(err => {
       console.log(err);
